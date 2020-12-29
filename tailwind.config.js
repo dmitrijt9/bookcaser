@@ -20,6 +20,11 @@ module.exports = {
       white: defaultTheme.colors.white,
       black: defaultTheme.colors.black,
     },
+    extend: {
+      maxWidth: {
+        '9xl': '120rem',
+      },
+    },
   },
   variants: {},
   plugins: [],

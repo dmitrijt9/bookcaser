@@ -43,8 +43,8 @@
           <div class="ml-3 relative">
             <div>
               <button
-                class="bg-white rounded-full flex text-sm focus:outline-none"
                 id="user-menu"
+                class="bg-white rounded-full flex text-sm focus:outline-none"
                 aria-haspopup="true"
                 @click="profileDropdownOpen = !profileDropdownOpen"
               >
