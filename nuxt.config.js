@@ -6,15 +6,22 @@ export default {
     clientId: process.env.GOOGLE_CLIENT_ID,
   },
 
+  target: 'static',
+
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'bookcaser',
+    title: 'Bookcaser',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          "Manage your Google Books shelves with Bookcase. Discover new literature and keep track of what you're reading. 📖",
+      },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'icon', href: '/bookcaser-icon.svg' }],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
