@@ -1,5 +1,4 @@
 <template>
-  <!-- This example requires Tailwind CSS v2.0+ -->
   <nav class="bg-white shadow">
     <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
       <div class="relative flex justify-between h-16">
@@ -8,36 +7,33 @@
           <button
             class="inline-flex items-center justify-center p-2 rounded-md hover:text-primary focus:outline-none"
             aria-expanded="false"
+            @click="mobileMenuOpen = !mobileMenuOpen"
           >
             <span class="sr-only">Open main menu</span>
             <!-- Icon when menu is closed. -->
-            <Icon name="menu" class="block h-6 w-6" />
+            <Icon v-if="!mobileMenuOpen" name="menu" class="block h-6 w-6" />
 
             <!-- Icon when menu is open. -->
-            <Icon name="close" class="block h-6 w-6" />
+            <Icon v-else name="close" class="block h-6 w-6" />
           </button>
         </div>
         <div
           class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start"
         >
           <div class="flex-shrink-0 flex items-center space-x-2">
-            <Icon name="bookcaser" class="block h-12 w-auto" />
-            <span class="hidden lg:block text-lg">bookcaser</span>
+            <!-- <Icon name="bookcaser" class="block h-12 w-auto" /> -->
+            <span class="block text-2xl font-light">bookcaser</span>
           </div>
-          <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-            <!-- Current: "border-primary-light text-secondary", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-secondary" -->
-            <a
-              href="#"
-              class="border-primary-light text-secondary inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+          <div class="hidden sm:flex sm:ml-6 sm:space-x-8">
+            <nuxt-link
+              v-for="l in menuLinks"
+              :key="l.title"
+              :to="{ name: l.route }"
+              :exact="l.exact"
+              class="border-transparent text-secondary inline-flex items-center px-1 pt-1 hover:border-primary-light border-b-2 text-base"
             >
-              Home
-            </a>
-            <a
-              href="#"
-              class="border-primary-light text-secondary inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-            >
-              Discover
-            </a>
+              {{ l.title }}
+            </nuxt-link>
           </div>
         </div>
         <div
@@ -55,7 +51,7 @@
                 <span class="sr-only">Open user menu</span>
                 <img
                   class="h-8 w-8 rounded-full"
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  :src="$store.state.auth.user.picture"
                   alt=""
                 />
               </button>
@@ -103,24 +99,19 @@
       </div>
     </div>
 
-    <!--
-    Mobile menu, toggle classes based on menu state.
-
-    Menu open: "block", Menu closed: "hidden"
-  -->
-    <div class="hidden sm:hidden">
+    <!-- Mobile menu -->
+    <div class="sm:hidden" :class="mobileMenuOpen ? 'block' : 'hidden'">
       <div class="pt-2 pb-4 space-y-1">
         <!-- Current: "bg-indigo-50 border-primary-light text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-secondary" -->
-        <a
-          href="#"
-          class="bg-indigo-50 border-primary-light text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-          >Home</a
+        <nuxt-link
+          v-for="l in menuLinks"
+          :key="l.title"
+          :exact="l.exact"
+          :to="{ name: l.route }"
+          class="border-transparent text-secondary hover:bg-secondary-light hover:border-primary-light hover:text-secondary block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
         >
-        <a
-          href="#"
-          class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-secondary block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-          >Discover</a
-        >
+          {{ l.title }}
+        </nuxt-link>
       </div>
     </div>
   </nav>
@@ -131,6 +122,19 @@ export default {
   data() {
     return {
       profileDropdownOpen: false,
+      mobileMenuOpen: false,
+      menuLinks: [
+        {
+          title: 'Home',
+          route: 'app',
+          exact: true,
+        },
+        {
+          title: 'Discover',
+          route: 'app-discover',
+          exact: true,
+        },
+      ],
     }
   },
   methods: {
@@ -140,3 +144,9 @@ export default {
   },
 }
 </script>
+
+<style lang="css" scoped>
+.nuxt-link-active {
+  @apply border-primary;
+}
+</style>
