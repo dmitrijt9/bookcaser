@@ -1,4 +1,11 @@
 export default {
+  publicRuntimeConfig: {
+    baseURL: process.env.BASE_URL,
+  },
+  privateRuntimeConfig: {
+    clientId: process.env.GOOGLE_CLIENT_ID,
+  },
+
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'bookcaser',
@@ -11,13 +18,17 @@ export default {
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: [],
+  css: ['~/assets/css/style.css'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
+
+  router: {
+    middleware: ['auth'],
+  },
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
@@ -28,7 +39,22 @@ export default {
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: [],
+  modules: ['@nuxtjs/axios', '@nuxtjs/auth-next'],
+
+  auth: {
+    strategies: {
+      google: {
+        codeChallengeMethod: '',
+        clientId: `${process.env.GOOGLE_CLIENT_ID}`,
+      },
+    },
+    redirect: {
+      login: '/',
+      home: '/app',
+      callback: '/',
+      logout: '/',
+    },
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
