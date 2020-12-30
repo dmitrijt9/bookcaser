@@ -12,8 +12,11 @@ export default {
   layout: 'app',
   async asyncData({ params: { id }, $api, store }) {
     const { totalItems, items } = await $api.getBookshelfVolumes(id)
-    const books = items || []
-    return { books, totalItems, bookshelveId: parseInt(id) }
+    return {
+      books: items || [],
+      totalItems: totalItems || 0,
+      bookshelveId: parseInt(id),
+    }
   },
   computed: {
     currentShelf() {

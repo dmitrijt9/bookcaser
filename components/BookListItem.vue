@@ -1,8 +1,8 @@
 <template>
   <li
-    class="col-span-1 flex flex-col text-center bg-white rounded-md shadow divide-y divide-secondary-light hover:bg-secondary-light hover:bg-opacity-50 transition-all duration-150"
+    class="relative col-span-1 flex flex-col text-center bg-white rounded-md shadow divide-y divide-secondary-light"
   >
-    <div class="flex-1 flex flex-col px-2 py-3">
+    <div class="flex-1 flex flex-col px-2 py-3 relative">
       <img
         class="w-24 h-32 flex-shrink-0 mx-auto bg-secondary-light rounded-md object-cover"
         :src="
@@ -35,8 +35,20 @@
           >
         </dd>
       </dl>
+      <BookListItemDropdown :open="dropdownOpen">
+        <a
+          v-for="i in bookDropdownItems"
+          :key="i.label"
+          href="#"
+          class="block px-3 py-2 text-sm text-secondary hover:bg-secondary-light hover:bg-opacity-50 transition-all duration-150"
+          role="menuitem"
+          @click.prevent="i.onClick"
+        >
+          {{ i.label }}
+        </a>
+      </BookListItemDropdown>
     </div>
-    <div>
+    <div class="relative">
       <div class="-mt-px flex divide-x divide-secondary-light">
         <div class="w-0 flex-1 flex">
           <a
@@ -52,6 +64,7 @@
           <a
             href="#"
             class="relative w-0 flex-1 inline-flex items-center justify-center py-2 text-sm text-secondary border border-transparent rounded-br-lg hover:text-primary transition-colors duration-150"
+            @click.prevent="dropdownOpen = !dropdownOpen"
           >
             <!-- Heroicon name: dot-horizontal -->
             <Icon name="dots" class="w-5 h-5" />
@@ -70,6 +83,25 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      dropdownOpen: false,
+      bookDropdownItems: [
+        {
+          label: 'Remove',
+          onClick: this.removeFromShelf,
+        },
+        {
+          label: 'Remove',
+          onClick: this.removeFromShelf,
+        },
+        {
+          label: 'Remove',
+          onClick: this.removeFromShelf,
+        },
+      ],
+    }
+  },
   computed: {
     volumeInfo() {
       return this.book.volumeInfo
@@ -82,6 +114,11 @@ export default {
     },
     saleInfo() {
       return this.book.saleInfo
+    },
+  },
+  methods: {
+    removeFromShelf() {
+      console.info('remove volume from shelf')
     },
   },
 }

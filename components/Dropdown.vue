@@ -1,14 +1,7 @@
 <template>
   <div class="relative">
-    <div>
-      <button
-        id="user-menu"
-        class="bg-white rounded-full flex text-sm outline-none focus:outline-none border-2 border-transparent hover:border-primary transition-all duration-150"
-        aria-haspopup="true"
-        @click="dropdownOpen = !dropdownOpen"
-      >
-        <slot name="trigger" />
-      </button>
+    <div @click="dropdownOpen = !dropdownOpen">
+      <slot name="trigger" />
     </div>
 
     <!-- Profile dropdown panel, show/hide based on dropdown state. -->
@@ -22,7 +15,7 @@
     >
       <div
         v-if="dropdownOpen"
-        class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white"
+        class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white transform"
         role="menu"
         aria-orientation="vertical"
         aria-labelledby="user-menu"

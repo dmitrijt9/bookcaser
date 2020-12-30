@@ -30,6 +30,9 @@ module.exports = {
       maxWidth: {
         '9xl': '120rem',
       },
+      boxShadow: {
+        'inner-bottom': 'inset 0px -15px 10px -15px rgba(227,227,227,1)',
+      },
     },
   },
   variants: {

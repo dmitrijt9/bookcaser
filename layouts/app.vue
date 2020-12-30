@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Navbar />
-    <div class="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8 mt-2">
+    <Navbar class="fixed w-full z-10" />
+    <div class="relative max-w-9xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
       <div class="max-w-6xl mx-auto">
         <div class="flex">
           <Sidebar class="hidden lg:flex w-1/5 mr-8" />
