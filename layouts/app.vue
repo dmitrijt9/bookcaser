@@ -11,3 +11,12 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  // fetch bookshelves on each app page
+  async fetch() {
+    await this.$api.getMyBookshelves()
+  },
+}
+</script>

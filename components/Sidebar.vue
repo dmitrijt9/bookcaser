@@ -3,20 +3,56 @@
   <div class="flex flex-col pt-3 pb-4 bg-white overflow-y-auto">
     <div class="flex-grow flex flex-col">
       <nav class="flex-1 px-2 bg-white space-y-1" aria-label="Sidebar">
-        <!-- Current: "bg-gray-100 text-gray-900", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
-        <nuxt-link
-          class="bg-primary-light text-secondary flex items-center px-2 py-2 text-sm font-medium rounded-md"
-          :to="{ name: 'app-discover' }"
+        <!-- PUBLIC bookshelves -->
+        <span
+          class="flex items-center px-2 py-2 text-sm font-light uppercase opacity-50"
+          >public</span
         >
-          <span>Favourites</span>
-        </nuxt-link>
         <nuxt-link
+          v-for="s in publicBookshelves"
+          :key="s.id + s.title"
+          class="text-secondary hover:bg-secondary-light flex items-center px-2 py-2 text-sm font-medium rounded-md"
+          :to="{
+            name: 'app-shelf-id',
+            params: { id: s.id },
+          }"
+        >
+          <span>{{ s.title }}</span>
+        </nuxt-link>
+
+        <!-- PRIVATE bookshelves -->
+        <span
+          class="flex items-center px-2 py-2 text-sm font-light uppercase opacity-50"
+          >private</span
+        >
+        <nuxt-link
+          v-for="s in privateBookshelves"
+          :key="s.id + s.title"
           class="text-secondary hover:bg-secondary-light flex items-center px-2 py-2 text-sm font-medium rounded-md"
           :to="{ name: 'app-discover' }"
         >
-          <span>Want To Read</span>
+          <span>{{ s.title }}</span>
         </nuxt-link>
       </nav>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    privateBookshelves() {
+      return this.$store.getters.bookshelvesPrivate
+    },
+    publicBookshelves() {
+      return this.$store.getters.bookshelvesPublic
+    },
+  },
+}
+</script>
+
+<style scoped>
+.link-active {
+  @apply bg-primary-light;
+}
+</style>

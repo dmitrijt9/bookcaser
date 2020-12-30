@@ -1,11 +1,15 @@
 export default {
   publicRuntimeConfig: {
-    baseURL: process.env.BASE_URL,
+    axios: {
+      browserBaseURL: process.env.GOOGLE_API_URL,
+    },
   },
   privateRuntimeConfig: {
     clientId: process.env.GOOGLE_CLIENT_ID,
+    axios: {
+      baseURL: process.env.GOOGLE_API_URL,
+    },
   },
-
   target: 'static',
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -28,7 +32,7 @@ export default {
   css: ['~/assets/css/style.css'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [],
+  plugins: ['~/plugins/axios', '~/plugins/booksApi'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -52,7 +56,13 @@ export default {
     strategies: {
       google: {
         codeChallengeMethod: '',
-        clientId: `${process.env.GOOGLE_CLIENT_ID}`,
+        clientId: process.env.GOOGLE_CLIENT_ID,
+        scope: [
+          'openid',
+          'profile',
+          'email',
+          'https://www.googleapis.com/auth/books',
+        ],
       },
     },
     redirect: {
