@@ -1,14 +1,14 @@
 <template>
   <li
-    class="col-span-1 flex flex-col text-center bg-white rounded-md shadow divide-y divide-secondary-light"
+    class="col-span-1 flex flex-col text-center bg-white rounded-md shadow divide-y divide-secondary-light hover:bg-secondary-light hover:bg-opacity-50 transition-all duration-150"
   >
-    <div class="flex-1 flex flex-col px-2 py-6">
+    <div class="flex-1 flex flex-col px-2 py-3">
       <img
         class="w-24 h-32 flex-shrink-0 mx-auto bg-secondary-light rounded-md object-cover"
         :src="
           volumeInfo.imageLinks
             ? volumeInfo.imageLinks.thumbnail
-            : '/images/book-placeholder.jpg'
+            : 'http://books.google.com/books/content?id=Pk23CwAAAEAJ&printsec=frontcover&img=1&zoom=1&uvs=3&source=gbs_api'
         "
         :alt="volumeInfo.title"
       />
@@ -25,11 +25,13 @@
             >{{ authorName }}</span
           >
         </dd>
-        <dt class="sr-only">Role</dt>
-        <dd class="mt-3">
+        <dt class="sr-only">Category</dt>
+        <dd class="mt-3 flex flex-wrap justify-center">
           <span
-            class="px-2 py-1 text-primary text-xs font-medium bg-primary-light rounded-full"
-            >Admin</span
+            v-for="c in volumeInfo.categories"
+            :key="c"
+            class="px-2 py-1 m-0.5 text-primary text-xs font-medium bg-primary-light rounded-full"
+            >{{ c }}</span
           >
         </dd>
       </dl>
@@ -38,45 +40,21 @@
       <div class="-mt-px flex divide-x divide-secondary-light">
         <div class="w-0 flex-1 flex">
           <a
-            href="#"
-            class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-secondary font-medium border border-transparent rounded-bl-lg hover:text-primary"
+            :href="volumeInfo.canonicalVolumeLink"
+            target="_blank"
+            class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-2 text-sm text-secondary border border-transparent rounded-bl-lg hover:text-primary transition-colors duration-150"
           >
-            <!-- Heroicon name: mail -->
-            <svg
-              class="w-5 h-5 text-secondary"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
-              />
-              <path
-                d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
-              />
-            </svg>
-            <span class="ml-3">Email</span>
+            <!-- Heroicon name: eye -->
+            <Icon name="eye" class="w-5 h-5" />
           </a>
         </div>
         <div class="-ml-px w-0 flex-1 flex">
           <a
             href="#"
-            class="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-secondary font-medium border border-transparent rounded-br-lg hover:text-primary"
+            class="relative w-0 flex-1 inline-flex items-center justify-center py-2 text-sm text-secondary border border-transparent rounded-br-lg hover:text-primary transition-colors duration-150"
           >
-            <!-- Heroicon name: phone -->
-            <svg
-              class="w-5 h-5 text-secondary"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
-              />
-            </svg>
-            <span class="ml-3">Call</span>
+            <!-- Heroicon name: dot-horizontal -->
+            <Icon name="dots" class="w-5 h-5" />
           </a>
         </div>
       </div>

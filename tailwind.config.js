@@ -24,12 +24,17 @@ module.exports = {
       padding: {
         0.5: '0.125rem',
       },
+      margin: {
+        0.5: '0.125rem',
+      },
       maxWidth: {
         '9xl': '120rem',
       },
     },
   },
-  variants: {},
+  variants: {
+    animation: ['responsive', 'motion-safe', 'motion-reduce'],
+  },
   plugins: [],
   purge: {
     // Learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css

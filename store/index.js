@@ -11,13 +11,16 @@ export const mutations = {
 }
 
 export const getters = {
+  bookshelves(state) {
+    return [...state.bookshelves].sort((first, second) => first.id - second.id)
+  },
   bookshelvesPrivate(state) {
-    return state.bookshelves
+    return [...state.bookshelves]
       .filter((s) => s.access === 'PRIVATE')
       .sort((first, second) => first.id - second.id)
   },
   bookshelvesPublic(state) {
-    return state.bookshelves
+    return [...state.bookshelves]
       .filter((s) => s.access === 'PUBLIC')
       .sort((first, second) => first.id - second.id)
   },

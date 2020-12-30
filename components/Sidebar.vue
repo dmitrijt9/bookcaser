@@ -13,11 +13,12 @@
         <nuxt-link
           v-for="s in publicBookshelves"
           :key="s.id + s.title"
-          class="text-secondary hover:bg-secondary-light flex items-center justify-between px-2 py-1 text-sm font-medium rounded-md"
+          class="text-secondary hover:bg-secondary-light hover:bg-opacity-50 flex items-center justify-between px-2 py-1 text-sm font-medium rounded-md transition-all duration-150"
           :to="{
-            name: 'app-shelf-id',
+            name: 'shelf-id',
             params: { id: s.id },
           }"
+          :exact="true"
         >
           <span>{{ s.title }}</span>
           <span
@@ -36,8 +37,12 @@
         <nuxt-link
           v-for="s in privateBookshelves"
           :key="s.id + s.title"
-          class="text-secondary hover:bg-secondary-light flex items-center justify-between px-2 py-1 text-sm font-medium rounded-md"
-          :to="{ name: 'app-discover' }"
+          class="text-secondary hover:bg-secondary-light hover:bg-opacity-50 flex items-center justify-between px-2 py-1 text-sm font-medium rounded-md transition-all duration-150"
+          :to="{
+            name: 'shelf-id',
+            params: { id: s.id },
+          }"
+          :exact="true"
         >
           <span>{{ s.title }}</span>
           <span
