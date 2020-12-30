@@ -1,12 +1,16 @@
 export const state = () => {
   return {
     bookshelves: [],
+    currentBookshelfId: null,
   }
 }
 
 export const mutations = {
   bookshelves(state, shelves) {
     state.bookshelves = shelves
+  },
+  currentBookshelfId(state, bookshelfId) {
+    state.currentBookshelfId = parseInt(bookshelfId)
   },
 }
 
@@ -23,5 +27,22 @@ export const getters = {
     return [...state.bookshelves]
       .filter((s) => s.access === 'PUBLIC')
       .sort((first, second) => first.id - second.id)
+  },
+  currentBookshelf(state, getters) {
+    return getters.bookshelves.find((s) => s.id === state.currentBookshelfId)
+  },
+
+  /**
+   * Not all bookshelves are mutable: https://developers.google.com/books/docs/v1/getting_started#background-resources
+   */
+  canAddToBookshelf(state) {
+    return ![1, 5, 6, 8].includes(state.currentBookshelfId)
+  },
+
+  /**
+   * Not all bookshelves are mutable: https://developers.google.com/books/docs/v1/getting_started#background-resources
+   */
+  canRemoveFromBookshelf() {
+    return ![1, 5, 8].includes(state.currentBookshelfId)
   },
 }

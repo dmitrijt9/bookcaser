@@ -12,10 +12,10 @@
         "
         :alt="volumeInfo.title"
       />
-      <h3 class="mt-4 text-secondary text-sm font-medium">
+      <h3 class="mt-3 text-secondary text-sm font-medium">
         {{ volumeInfo.title }}
       </h3>
-      <dl class="mt-2 flex-grow flex flex-col justify-between">
+      <dl class="mt-1 flex-grow flex flex-col justify-between">
         <dt class="sr-only">Title</dt>
         <dd class="text-secondary text-sm divide-x opacity-75">
           <span
@@ -26,7 +26,7 @@
           >
         </dd>
         <dt class="sr-only">Category</dt>
-        <dd class="mt-3 flex flex-wrap justify-center">
+        <dd class="mt-1 flex flex-wrap justify-center">
           <span
             v-for="c in volumeInfo.categories"
             :key="c"
@@ -35,16 +35,19 @@
           >
         </dd>
       </dl>
+
+      <!-- BOOK ITEM MENU/DROPDOWN -->
       <BookListItemDropdown :open="dropdownOpen">
         <a
           v-for="i in bookDropdownItems"
           :key="i.label"
           href="#"
-          class="block px-3 py-2 text-sm text-secondary hover:bg-secondary-light hover:bg-opacity-50 transition-all duration-150"
+          class="flex items-center justify-center space-x-2 px-2 py-2 text-sm text-secondary hover:bg-secondary-light hover:bg-opacity-50 transition-all duration-150"
           role="menuitem"
           @click.prevent="i.onClick"
         >
-          {{ i.label }}
+          <span class="flex-shrink"><Icon name="trash" class="w-5 h-5" /></span>
+          <span>{{ i.label }}</span>
         </a>
       </BookListItemDropdown>
     </div>
@@ -86,20 +89,6 @@ export default {
   data() {
     return {
       dropdownOpen: false,
-      bookDropdownItems: [
-        {
-          label: 'Remove',
-          onClick: this.removeFromShelf,
-        },
-        {
-          label: 'Remove',
-          onClick: this.removeFromShelf,
-        },
-        {
-          label: 'Remove',
-          onClick: this.removeFromShelf,
-        },
-      ],
     }
   },
   computed: {
@@ -115,10 +104,35 @@ export default {
     saleInfo() {
       return this.book.saleInfo
     },
+    currentBookshelf() {
+      return this.$store.getters.currentBookshelf
+    },
+    bookDropdownItems() {
+      const items = []
+
+      if (this.$store.getters.canRemoveFromBookshelf) {
+        items.push({
+          label: 'Remove',
+          onClick: this.removeFromShelf,
+          icon: 'trash',
+        })
+      }
+
+      return items
+    },
   },
   methods: {
     removeFromShelf() {
-      console.info('remove volume from shelf')
+      if (
+        confirm(
+          `Are you sure to remove volume ${this.volumeInfo.title} from the shelf ${this.currentBookshelf.title}?`
+        )
+      ) {
+        this.$api.removeVolumeFromBookshelf(
+          this.book.id,
+          this.currentBookshelf.id
+        )
+      }
     },
   },
 }
