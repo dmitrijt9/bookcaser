@@ -28,6 +28,8 @@ export default {
     link: [{ rel: 'icon', href: '/bookcaser-icon.svg' }],
   },
 
+  loading: '~/components/Loader.vue',
+
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: ['~/assets/css/style.css'],
 
