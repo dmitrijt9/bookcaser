@@ -126,12 +126,12 @@ export default {
       menuLinks: [
         {
           title: 'Home',
-          route: 'app',
+          route: 'shelf',
           exact: true,
         },
         {
           title: 'Discover',
-          route: 'app-discover',
+          route: 'discover',
           exact: true,
         },
       ],

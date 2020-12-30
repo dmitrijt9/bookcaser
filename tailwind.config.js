@@ -21,6 +21,9 @@ module.exports = {
       black: defaultTheme.colors.black,
     },
     extend: {
+      padding: {
+        0.5: '0.125rem',
+      },
       maxWidth: {
         '9xl': '120rem',
       },

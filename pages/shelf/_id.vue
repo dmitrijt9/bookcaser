@@ -8,16 +8,8 @@
 <script>
 export default {
   layout: 'app',
-  // books dump
-  data() {
-    return {
-      books: [
-        {
-          title: 'The Hobbit',
-          author: 'Tolkien',
-        },
-      ],
-    }
+  asyncData({ params: { id } }) {
+    return { books: [] }
   },
 }
 </script>

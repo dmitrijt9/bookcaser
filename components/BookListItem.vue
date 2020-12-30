@@ -1,17 +1,30 @@
 <template>
   <li
-    class="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-secondary-light"
+    class="col-span-1 flex flex-col text-center bg-white rounded-md shadow divide-y divide-secondary-light"
   >
-    <div class="flex-1 flex flex-col p-8">
+    <div class="flex-1 flex flex-col px-2 py-6">
       <img
-        class="w-32 h-32 flex-shrink-0 mx-auto bg-black rounded-full"
-        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60"
-        alt=""
+        class="w-24 h-32 flex-shrink-0 mx-auto bg-secondary-light rounded-md object-cover"
+        :src="
+          volumeInfo.imageLinks
+            ? volumeInfo.imageLinks.thumbnail
+            : '/images/book-placeholder.jpg'
+        "
+        :alt="volumeInfo.title"
       />
-      <h3 class="mt-6 text-secondary text-sm font-medium">Jane Cooper</h3>
-      <dl class="mt-1 flex-grow flex flex-col justify-between">
+      <h3 class="mt-4 text-secondary text-sm font-medium">
+        {{ volumeInfo.title }}
+      </h3>
+      <dl class="mt-2 flex-grow flex flex-col justify-between">
         <dt class="sr-only">Title</dt>
-        <dd class="text-secondary text-sm">Paradigm Representative</dd>
+        <dd class="text-secondary text-sm divide-x opacity-75">
+          <span
+            v-for="authorName in volumeInfo.authors"
+            :key="authorName"
+            class="p-1"
+            >{{ authorName }}</span
+          >
+        </dd>
         <dt class="sr-only">Role</dt>
         <dd class="mt-3">
           <span
@@ -77,6 +90,20 @@ export default {
     book: {
       type: Object,
       required: true,
+    },
+  },
+  computed: {
+    volumeInfo() {
+      return this.book.volumeInfo
+    },
+    searchInfo() {
+      return this.book.searchInfo
+    },
+    userInfo() {
+      return this.book.userInfo
+    },
+    saleInfo() {
+      return this.book.saleInfo
     },
   },
 }
