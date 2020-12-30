@@ -1,1 +1,0 @@
-window.__NUXT__=(function(a){return {staticAssetsBase:"\u002F_nuxt\u002Fstatic\u002F1609325508",layout:"default",error:a,state:{bookshelves:[],auth:{user:a,loggedIn:false,strategy:"google"}},serverRendered:true,routePath:"\u002F",config:{axios:{browserBaseURL:void 0}}}}(null));
