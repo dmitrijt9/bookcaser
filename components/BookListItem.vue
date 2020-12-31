@@ -2,6 +2,7 @@
   <li
     class="relative col-span-1 flex flex-col text-center bg-white rounded-md shadow divide-y divide-secondary-light"
   >
+    <!-- BOOK PREVIEW INFO -->
     <div class="flex-1 flex flex-col px-2 py-3 relative">
       <img
         class="w-24 h-32 flex-shrink-0 mx-auto bg-secondary-light rounded-md object-cover"
@@ -54,6 +55,7 @@
         </a>
       </BookListItemDropdown>
     </div>
+    <!-- BOOK BOTTOM ACTIONS -->
     <div class="relative">
       <div class="-mt-px flex divide-x divide-secondary-light">
         <div class="w-0 flex-1 flex">
@@ -145,12 +147,12 @@ export default {
           this.book.id,
           this.currentBookshelf.id
         )
+        this.dropdownOpen = false
       }
     },
     addToShelf() {
-      // @TODO open modal with list of shelves to add (select multiple?)
-      console.log('add to shelf')
-      // this.$api.addVolumeFromBookshelf(this.book.id, this.currentBookshelf.id)
+      this.$emit('addToShelf', this.book.id)
+      this.dropdownOpen = false
     },
   },
 }

@@ -1,5 +1,4 @@
 <template>
-  <!-- This example requires Tailwind CSS v2.0+ -->
   <div>
     <ul
       v-if="books.length > 0"
@@ -10,6 +9,7 @@
         :key="JSON.stringify(book)"
         :book="book"
         :is-searching="isSearching"
+        @addToShelf="openAddToShelfModal"
       />
     </ul>
     <div
@@ -19,6 +19,10 @@
       <Icon name="cloudSnow" class="w-56 h-56 text-primary animate-pulse" />
       <span class="text-2xl font-medium">Nothing here 🙅</span>
     </div>
+    <AddToShelfModal
+      :open.sync="addToShelfModalOpen"
+      @input="addVolumeToShelf"
+    />
   </div>
 </template>
 
@@ -32,6 +36,38 @@ export default {
     isSearching: {
       type: Boolean,
       default: false,
+    },
+  },
+  data() {
+    return {
+      addToShelfModalOpen: false,
+      volumeEditing: null,
+    }
+  },
+  methods: {
+    openAddToShelfModal(volumeId) {
+      this.addToShelfModalOpen = true
+      this.volumeEditing = volumeId
+    },
+    async addVolumeToShelf(shelf) {
+      if (!this.volumeEditing) {
+        return
+      }
+
+      this.$nuxt.$loading.start()
+
+      // if shelf is an array of shelves ids
+      if (typeof shelf === 'object') {
+        shelf.forEach(async (s) => {
+          await this.$api.addVolumeToBookshelf(this.volumeEditing, s)
+        })
+      } else {
+        await this.$api.addVolumeToBookshelf(this.volumeEditing, shelf)
+      }
+
+      this.$nuxt.$loading.finish()
+
+      this.volumeEditing = null
     },
   },
 }

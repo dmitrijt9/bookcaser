@@ -38,7 +38,7 @@ module.exports = {
   variants: {
     animation: ['responsive', 'motion-safe', 'motion-reduce'],
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
   purge: {
     // Learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
     enabled: process.env.NODE_ENV === 'production',
