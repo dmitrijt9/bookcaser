@@ -38,6 +38,7 @@
 
       <!-- BOOK ITEM MENU/DROPDOWN -->
       <BookListItemDropdown :open="dropdownOpen">
+        <div v-if="bookDropdownItems.length <= 0">No Actions</div>
         <a
           v-for="i in bookDropdownItems"
           :key="i.label"
@@ -46,7 +47,9 @@
           role="menuitem"
           @click.prevent="i.onClick"
         >
-          <span class="flex-shrink"><Icon name="trash" class="w-5 h-5" /></span>
+          <span class="flex-shrink"
+            ><Icon :name="i.icon" class="w-5 h-5"
+          /></span>
           <span>{{ i.label }}</span>
         </a>
       </BookListItemDropdown>
@@ -85,6 +88,10 @@ export default {
       type: Object,
       required: true,
     },
+    isSearching: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -108,9 +115,15 @@ export default {
       return this.$store.getters.currentBookshelf
     },
     bookDropdownItems() {
-      const items = []
+      const items = [
+        {
+          label: 'Add to shelf',
+          onClick: this.addToShelf,
+          icon: 'plus',
+        },
+      ]
 
-      if (this.$store.getters.canRemoveFromBookshelf) {
+      if (this.$store.getters.canRemoveFromBookshelf && !this.isSearching) {
         items.push({
           label: 'Remove',
           onClick: this.removeFromShelf,
@@ -133,6 +146,11 @@ export default {
           this.currentBookshelf.id
         )
       }
+    },
+    addToShelf() {
+      // @TODO open modal with list of shelves to add (select multiple?)
+      console.log('add to shelf')
+      // this.$api.addVolumeFromBookshelf(this.book.id, this.currentBookshelf.id)
     },
   },
 }

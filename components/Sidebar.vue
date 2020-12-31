@@ -1,59 +1,59 @@
 <template>
   <!-- This example requires Tailwind CSS v2.0+ -->
   <div
-    class="relative flex flex-col pt-3 pb-4 bg-white overflow-y-auto border-b border-secondary-light"
+    class="relative block pt-3 pb-4 bg-white overflow-y-auto border-b border-secondary-light"
   >
-    <!-- <div class="fixed flex-grow flex flex-col"> -->
-    <nav class="relative px-2 bg-white space-y-1" aria-label="Sidebar">
-      <!-- PUBLIC bookshelves -->
-      <span
-        class="flex items-center px-1 py-2 text-sm font-light uppercase opacity-50"
-        >public</span
-      >
-      <nuxt-link
-        v-for="s in publicBookshelves"
-        :key="s.id + s.title"
-        class="text-secondary hover:bg-secondary-light hover:bg-opacity-50 flex items-center justify-between px-2 py-1 text-sm font-medium rounded-md transition-all duration-150"
-        :to="{
-          name: 'shelf-id',
-          params: { id: s.id },
-        }"
-        :exact="true"
-      >
-        <span>{{ s.title }}</span>
+    <div class="block w-full relative">
+      <nav class="w-56 fixed px-2 bg-white space-y-1" aria-label="Sidebar">
+        <!-- PUBLIC bookshelves -->
         <span
-          v-show="s.volumeCount"
-          class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-primary-light text-primary"
+          class="flex items-center px-1 py-2 text-sm font-light uppercase opacity-50"
+          >public</span
         >
-          {{ s.volumeCount }}
-        </span>
-      </nuxt-link>
+        <nuxt-link
+          v-for="s in publicBookshelves"
+          :key="s.id + s.title"
+          class="text-secondary hover:bg-secondary-light hover:bg-opacity-50 flex items-center justify-between px-2 py-1 text-sm font-medium rounded-md transition-all duration-150"
+          :to="{
+            name: 'shelf-id',
+            params: { id: s.id },
+          }"
+          :exact="true"
+        >
+          <span>{{ s.title }}</span>
+          <span
+            v-show="s.volumeCount"
+            class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-primary-light text-primary"
+          >
+            {{ s.volumeCount }}
+          </span>
+        </nuxt-link>
 
-      <!-- PRIVATE bookshelves -->
-      <span
-        class="flex items-center px-1 py-2 text-sm font-light uppercase opacity-50"
-        >private</span
-      >
-      <nuxt-link
-        v-for="s in privateBookshelves"
-        :key="s.id + s.title"
-        class="text-secondary hover:bg-secondary-light hover:bg-opacity-50 flex items-center justify-between px-2 py-1 text-sm font-medium rounded-md transition-all duration-150"
-        :to="{
-          name: 'shelf-id',
-          params: { id: s.id },
-        }"
-        :exact="true"
-      >
-        <span>{{ s.title }}</span>
+        <!-- PRIVATE bookshelves -->
         <span
-          v-show="s.volumeCount"
-          class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-primary-light text-primary"
+          class="flex items-center px-1 py-2 text-sm font-light uppercase opacity-50"
+          >private</span
         >
-          {{ s.volumeCount }}
-        </span>
-      </nuxt-link>
-    </nav>
-    <!-- </div> -->
+        <nuxt-link
+          v-for="s in privateBookshelves"
+          :key="s.id + s.title"
+          class="text-secondary hover:bg-secondary-light hover:bg-opacity-50 flex items-center justify-between px-2 py-1 text-sm font-medium rounded-md transition-all duration-150"
+          :to="{
+            name: 'shelf-id',
+            params: { id: s.id },
+          }"
+          :exact="true"
+        >
+          <span>{{ s.title }}</span>
+          <span
+            v-show="s.volumeCount"
+            class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-primary-light text-primary"
+          >
+            {{ s.volumeCount }}
+          </span>
+        </nuxt-link>
+      </nav>
+    </div>
   </div>
 </template>
 

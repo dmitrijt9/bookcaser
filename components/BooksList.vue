@@ -9,6 +9,7 @@
         v-for="book in books"
         :key="JSON.stringify(book)"
         :book="book"
+        :is-searching="isSearching"
       />
     </ul>
     <div
@@ -27,6 +28,10 @@ export default {
     books: {
       type: Array,
       required: true,
+    },
+    isSearching: {
+      type: Boolean,
+      default: false,
     },
   },
 }
