@@ -33,6 +33,9 @@ module.exports = {
       boxShadow: {
         'inner-bottom': 'inset 0px -15px 10px -15px rgba(227,227,227,1)',
       },
+      outline: {
+        'primary-light': `2px solid ${defaultTheme.colors.red[200]}`,
+      },
     },
   },
   variants: {

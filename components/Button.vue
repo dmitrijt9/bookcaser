@@ -1,7 +1,7 @@
 <template>
   <button
     type="button"
-    class="w-full inline-flex justify-center py-2 px-4 border rounded-md shadow-sm text-sm font-medium outline-none focus:outline-white transition-all duration-150"
+    class="w-full inline-flex justify-center py-2 px-4 border rounded-md shadow-sm text-sm font-medium outline-none focus:outline-primary-light transition-all duration-150"
     :class="style"
     @click="$emit('click')"
   >

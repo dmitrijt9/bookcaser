@@ -31,12 +31,15 @@
           >
             <div class="px-4 py-8 sm:px-10">
               <div class="space-y-4">
-                <p class="text-base text-secondary">Sign in with</p>
+                <p class="text-base text-secondary">Sign in</p>
 
                 <div>
-                  <Button @click="$auth.loginWith('google')">
-                    <!-- TODO Google Button -->
-                    <span>Google</span>
+                  <Button
+                    class="font-semibold space-x-5 py-3"
+                    @click="$auth.loginWith('google')"
+                  >
+                    <span><Icon name="google" class="w-5 h-5" /></span>
+                    <span>Sign in with Google</span>
                   </Button>
                 </div>
               </div>
@@ -45,14 +48,20 @@
               class="px-4 py-6 bg-gray-50 border-t-2 border-secondary sm:px-10"
             >
               <p class="text-xs leading-5 text-secondary">
-                By signing up, you agree to our
-                <a href="#" class="font-medium text-black hover:underline"
-                  >Terms of Service</a
+                By signing in, you agree to our
+                <NuxtLink
+                  class="font-medium underline hover:text-black transition duration-150"
+                  :to="{ name: 'terms-of-service' }"
+                  >Terms of Service</NuxtLink
                 >
+
                 and
-                <a href="#" class="font-medium text-black hover:underline"
-                  >Privacy Policy</a
-                >.
+                <NuxtLink
+                  class="font-medium underline hover:text-black transition duration-150"
+                  :to="{ name: 'terms-of-service' }"
+                  >Privacy Policy</NuxtLink
+                >
+                .
               </p>
             </div>
           </div>
