@@ -1,10 +1,10 @@
 <template>
-  <!-- This example requires Tailwind CSS v2.0+ -->
-  <div
-    class="relative block pt-3 pb-4 bg-white overflow-y-auto border-b border-secondary-light"
-  >
-    <div class="block w-full relative">
-      <nav class="w-56 fixed px-2 bg-white space-y-1" aria-label="Sidebar">
+  <div class="relative block pt-3 pb-4 bg-white overflow-y-auto">
+    <div class="w-56 fixed flex flex-col justify-between">
+      <nav
+        class="p-2 pb-4 bg-white space-y-1 border-b border-secondary-light"
+        aria-label="Sidebar"
+      >
         <!-- PUBLIC bookshelves -->
         <span
           class="flex items-center px-1 py-2 text-sm font-light uppercase opacity-50"
@@ -53,6 +53,26 @@
           </span>
         </nuxt-link>
       </nav>
+      <div class="pt-4">
+        <nuxt-link
+          class="text-secondary hover:text-black flex items-center justify-between p-1 text-xs font-medium rounded-md transition-all duration-150"
+          :to="{
+            name: 'terms-of-service',
+          }"
+          :exact="true"
+        >
+          <span>Terms of Service</span>
+        </nuxt-link>
+        <nuxt-link
+          class="text-secondary hover:text-black flex items-center justify-between p-1 text-xs font-medium rounded-md transition-all duration-150"
+          :to="{
+            name: 'privacy-policy',
+          }"
+          :exact="true"
+        >
+          <span>Privacy Policy</span>
+        </nuxt-link>
+      </div>
     </div>
   </div>
 </template>
