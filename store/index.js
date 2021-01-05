@@ -56,7 +56,7 @@ export const getters = {
   /**
    * Not all bookshelves are mutable: https://developers.google.com/books/docs/v1/getting_started#background-resources
    */
-  canRemoveFromBookshelf() {
+  canRemoveFromBookshelf(state) {
     return ![1, 5, 8].includes(state.currentBookshelfId)
   },
 }
