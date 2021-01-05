@@ -34,7 +34,7 @@ export default {
       // give Google Books API some time to process the thing above...
       setTimeout(async () => {
         await this.$api.getMyBookshelves()
-      }, 1000)
+      }, 500)
       this.$nuxt.$loading.finish()
     },
   },

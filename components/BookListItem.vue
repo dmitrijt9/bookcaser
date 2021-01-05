@@ -153,10 +153,17 @@ export default {
         this.dropdownOpen = false
 
         this.$nuxt.$loading.finish()
+        // give Google Books API some time to process the thing above...
+        setTimeout(async () => {
+          await this.$api.getMyBookshelves()
+        }, 500)
+        this.$notify.success(
+          `Book ${this.volumeInfo.title} was removed from the shelf 🗑`
+        )
       }
     },
     addToShelf() {
-      this.$emit('addToShelf', this.book.id)
+      this.$emit('addToShelf', this.book)
       this.dropdownOpen = false
     },
   },

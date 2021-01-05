@@ -48,8 +48,10 @@ export default {
   computed: {
     sortedBooks() {
       // sort by update by user datetime
-      return [...this.books].sort(
-        (a, b) => new Date(b.userInfo.updated) - new Date(a.userInfo.updated)
+      return [...this.books].sort((a, b) =>
+        this.isSearching
+          ? a.id - b.id
+          : new Date(b.userInfo.updated) - new Date(a.userInfo.updated)
       )
     },
   },
@@ -68,15 +70,24 @@ export default {
       // if shelf is an array of shelves ids
       if (typeof shelf === 'object') {
         shelf.forEach(async (s) => {
-          await this.$api.addVolumeToBookshelf(this.volumeEditing, s)
+          await this.$api.addVolumeToBookshelf(this.volumeEditing.id, s)
         })
       } else {
-        await this.$api.addVolumeToBookshelf(this.volumeEditing, shelf)
+        await this.$api.addVolumeToBookshelf(this.volumeEditing.id, shelf)
       }
 
       this.$emit('change')
 
       this.$nuxt.$loading.finish()
+
+      // give Google Books API some time to process the thing above...
+      setTimeout(async () => {
+        await this.$api.getMyBookshelves()
+      }, 500)
+
+      this.$notify.success(
+        `Book ${this.volumeEditing.volumeInfo.title} was added to shelf 👌`
+      )
 
       this.volumeEditing = null
     },

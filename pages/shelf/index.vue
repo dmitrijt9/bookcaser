@@ -6,7 +6,7 @@
     <form @submit.prevent="searchVolumes">
       <Search :search-query.sync="searchQuery" />
     </form>
-    <BooksList :books="books" is-searching @change="onBookChange" />
+    <BooksList :books="books" is-searching />
   </section>
 </template>
 
@@ -24,12 +24,6 @@ export default {
       this.$nuxt.$loading.start()
       this.books = await this.$api.searchMyVolumes(this.searchQuery)
       this.$nuxt.$loading.finish()
-    },
-    onBookChange() {
-      // give Google Books API some time to process the thing above...
-      setTimeout(async () => {
-        await this.$api.getMyBookshelves()
-      }, 1000)
     },
   },
 }

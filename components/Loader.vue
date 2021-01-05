@@ -9,9 +9,9 @@
   >
     <div
       v-if="loading"
-      class="fixed bottom-0 right-0 m-8 rounded-md px-3 py-2 text-white text-sm bg-primary flex items-center space-x-3"
+      class="fixed bottom-0 right-0 m-6 sm:m-8 rounded-md px-3 py-2 text-white text-xs sm:text-sm bg-primary flex items-center space-x-3 z-10"
     >
-      <Icon class="animate-spin w-6 h-6" name="circleLoad" />
+      <Icon class="animate-spin w-5 h-5 sm:w-6 sm:h-6" name="circleLoad" />
       <span>Loading</span>
     </div>
   </transition>
