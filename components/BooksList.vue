@@ -5,7 +5,7 @@
       class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
     >
       <BookListItem
-        v-for="book in books"
+        v-for="book in sortedBooks"
         :key="book.id"
         :book="book"
         :is-searching="isSearching"
@@ -44,6 +44,14 @@ export default {
       addToShelfModalOpen: false,
       volumeEditing: null,
     }
+  },
+  computed: {
+    sortedBooks() {
+      // sort by update by user datetime
+      return [...this.books].sort(
+        (a, b) => new Date(b.userInfo.updated) - new Date(a.userInfo.updated)
+      )
+    },
   },
   methods: {
     openAddToShelfModal(volumeId) {

@@ -15,12 +15,12 @@
               class="mt-4 text-4xl tracking-tight font-extrabold text-secondary sm:mt-5 sm:leading-none lg:mt-6 lg:text-5xl xl:text-6xl"
             >
               <span class="md:block">Manage your</span>
-              <span class="text-primary md:block">book shelves</span>
+              <span class="text-primary md:block">bookshelves</span>
             </h1>
             <p
               class="mt-3 text-base text-secondary font-light sm:mt-5 sm:text-xl lg:text-lg xl:text-xl"
             >
-              Manage your Google Books shelves with Bookcase. Discover new
+              Manage your Google Books shelves with Bookcaser. Discover new
               literature and keep track of what you're reading.
             </p>
           </div>
