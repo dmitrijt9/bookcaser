@@ -3,7 +3,7 @@
     <h1 class="text-xl font-semibold text-secondary">
       {{ currentShelf && currentShelf.title }}
     </h1>
-    <BooksList :books="books" />
+    <BooksList :books="books" @change="fetchVolumes(bookshelfId)" />
   </section>
 </template>
 
@@ -16,12 +16,26 @@ export default {
     return {
       books: items || [],
       totalItems: totalItems || 0,
-      bookshelveId: parseInt(id),
+      bookshelfId: parseInt(id),
     }
   },
   computed: {
     currentShelf() {
       return this.$store.getters.currentBookshelf
+    },
+  },
+  methods: {
+    async fetchVolumes(id) {
+      this.$nuxt.$loading.start()
+      const { totalItems, items } = await this.$api.getBookshelfVolumes(id)
+      this.totalItems = totalItems || 0
+      this.books = items || []
+
+      // give Google Books API some time to process the thing above...
+      setTimeout(async () => {
+        await this.$api.getMyBookshelves()
+      }, 1000)
+      this.$nuxt.$loading.finish()
     },
   },
 }

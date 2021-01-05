@@ -6,10 +6,11 @@
     >
       <BookListItem
         v-for="book in books"
-        :key="JSON.stringify(book)"
+        :key="book.id"
         :book="book"
         :is-searching="isSearching"
         @addToShelf="openAddToShelfModal"
+        @removeBook="$emit('change')"
       />
     </ul>
     <div
@@ -64,6 +65,8 @@ export default {
       } else {
         await this.$api.addVolumeToBookshelf(this.volumeEditing, shelf)
       }
+
+      this.$emit('change')
 
       this.$nuxt.$loading.finish()
 

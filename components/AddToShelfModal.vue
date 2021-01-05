@@ -66,8 +66,8 @@
             </div>
             <div class="mt-3 text-center">
               <h3
-                class="text-lg leading-6 font-medium text-secondary"
                 id="modal-headline"
+                class="text-lg leading-6 font-medium text-secondary"
               >
                 Select bookshelves
               </h3>
@@ -88,12 +88,12 @@
                       >
                         <label class="flex items-center text-sm cursor-pointer">
                           <input
+                            v-model="selectedBookshelves"
                             name="pricing_plan"
                             type="checkbox"
                             class="h-5 w-5 text-primary cursor-pointer border border-primary-light rounded-sm outline-none focus:outline-none"
                             :aria-describedby="`bookshelf ${b.title}`"
                             :value="b.id"
-                            v-model="selectedBookshelves"
                           />
                           <span
                             class="ml-3 font-medium text-secondary text-base"
@@ -116,12 +116,12 @@
                       >
                         <label class="flex items-center text-sm cursor-pointer">
                           <input
+                            v-model="selectedBookshelves"
                             name="pricing_plan"
                             type="checkbox"
                             class="h-5 w-5 text-primary cursor-pointer border border-primary-light rounded-sm outline-none focus:outline-none"
                             :aria-describedby="`bookshelf ${b.title}`"
                             :value="b.id"
-                            v-model="selectedBookshelves"
                           />
                           <span
                             class="ml-3 font-medium text-secondary text-base"

@@ -137,17 +137,22 @@ export default {
     },
   },
   methods: {
-    removeFromShelf() {
+    async removeFromShelf() {
       if (
         confirm(
           `Are you sure to remove volume ${this.volumeInfo.title} from the shelf ${this.currentBookshelf.title}?`
         )
       ) {
-        this.$api.removeVolumeFromBookshelf(
+        this.$nuxt.$loading.start()
+
+        await this.$api.removeVolumeFromBookshelf(
           this.book.id,
           this.currentBookshelf.id
         )
+        this.$emit('removeBook')
         this.dropdownOpen = false
+
+        this.$nuxt.$loading.finish()
       }
     },
     addToShelf() {

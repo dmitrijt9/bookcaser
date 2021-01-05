@@ -126,8 +126,8 @@
               name: 'shelf-id',
               params: { id: s.id },
             }"
-            @click.native="mobileMenuOpen = false"
             class="border-transparent hover:bg-secondary-light hover:border-primary-light hover:bg-opacity-50 flex items-center justify-between pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-all duration-150"
+            @click.native="mobileMenuOpen = false"
           >
             <span>{{ s.title }}</span>
             <span
