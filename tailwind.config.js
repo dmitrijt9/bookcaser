@@ -6,6 +6,9 @@ const defaultTheme = require('tailwindcss/defaultTheme')
  ** Default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
  */
 module.exports = {
+  experimental: {
+    applyComplexClasses: true,
+  },
   theme: {
     colors: {
       primary: {
