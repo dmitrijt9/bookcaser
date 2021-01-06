@@ -28,6 +28,7 @@ module.exports = {
         0.5: '0.125rem',
       },
       maxWidth: {
+        '7xl': '80rem',
         '9xl': '120rem',
       },
       boxShadow: {
@@ -35,6 +36,39 @@ module.exports = {
       },
       outline: {
         'primary-light': `2px solid ${defaultTheme.colors.red[200]}`,
+      },
+      animation: {
+        shake: 'shake 2s infinite',
+      },
+      keyframes: {
+        shake: {
+          '0%': {
+            transform: 'rotate(0deg)',
+          },
+          '10%': {
+            transform: 'rotate(14deg)',
+          },
+          /* The following five values can be played with to make the shaking more or less extreme */
+          '20%': {
+            transform: 'rotate(-8deg)',
+          },
+          '30%': {
+            transform: 'rotate(14deg)',
+          },
+          '40%': {
+            transform: 'rotate(-4deg)',
+          },
+          '50%': {
+            transform: 'rotate(10deg)',
+          },
+          '60%': {
+            transform: 'rotate(0deg)',
+          },
+          /* Reset for the last half to pause */
+          '100%': {
+            transform: 'rotate(0deg)',
+          },
+        },
       },
     },
   },

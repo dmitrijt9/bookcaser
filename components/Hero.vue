@@ -5,8 +5,8 @@
       src="/images/book-shelf.jpg"
       alt="Book Shelf background"
     />
-    <div class="relative mx-auto max-w-7xl">
-      <div class="lg:grid lg:grid-cols-12 lg:gap-8 pt-16 md:pt-24">
+    <div class="relative mx-auto max-w-6xl">
+      <div class="lg:grid lg:grid-cols-12 lg:gap-8 py-16 md:py-32">
         <div
           class="px-4 sm:px-6 sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left lg:flex lg:items-center"
         >
@@ -25,14 +25,14 @@
             </p>
           </div>
         </div>
-        <div class="mt-16 sm:mt-24 lg:mt-0 lg:col-span-6">
+        <div
+          class="mt-16 sm:mt-24 lg:mt-0 lg:col-span-6 lg:flex lg:items-center"
+        >
           <div
             class="bg-transparent sm:max-w-md sm:w-full sm:mx-auto sm:rounded-lg sm:overflow-hidden"
           >
             <div class="px-4 py-8 sm:px-10">
               <div class="space-y-4">
-                <p class="text-base text-secondary">Sign in</p>
-
                 <div>
                   <Button
                     class="font-semibold space-x-5 py-3"
@@ -45,7 +45,7 @@
               </div>
             </div>
             <div
-              class="px-4 py-6 bg-gray-50 border-t-2 border-secondary sm:px-10"
+              class="px-4 py-6 bg-gray-50 border-t border-secondary border-opacity-50 sm:px-10"
             >
               <p class="text-xs leading-5 text-secondary">
                 By signing in, you agree to our

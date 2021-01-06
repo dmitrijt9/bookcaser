@@ -1,6 +1,7 @@
 <template>
   <div>
-    <Hero class="min-h-screen" />
+    <Hero />
+    <Features />
   </div>
 </template>
 
