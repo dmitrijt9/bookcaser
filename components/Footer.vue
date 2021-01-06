@@ -65,6 +65,14 @@ export default {
   data: () => ({
     links: [
       {
+        label: 'Home',
+        url: '/',
+      },
+      {
+        label: 'App',
+        url: '/shelf',
+      },
+      {
         label: 'Privacy Policy',
         url: '/privacy-policy',
       },
