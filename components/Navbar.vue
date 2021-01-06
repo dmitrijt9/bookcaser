@@ -56,6 +56,14 @@
               </button>
             </template>
             <template #items>
+              <div class="py-1 text-secondary">
+                <span class="text-sm px-4 py-2">{{
+                  $store.state.auth.user.email
+                }}</span>
+                <span class="text-xs px-4 py-2">{{
+                  $store.state.auth.user.name
+                }}</span>
+              </div>
               <div class="py-1">
                 <a
                   v-for="i in userDropdownItems"
