@@ -15,7 +15,7 @@
     >
       <div
         v-if="dropdownOpen"
-        class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white transform"
+        class="origin-top-right absolute right-0 mt-2 px-2 w-48 rounded-md shadow-lg py-1 bg-white transform divide-y divide-secondary divide-opacity-25"
         role="menu"
         aria-orientation="vertical"
         aria-labelledby="user-menu"

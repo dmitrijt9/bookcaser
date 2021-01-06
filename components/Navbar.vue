@@ -56,16 +56,32 @@
               </button>
             </template>
             <template #items>
-              <a
-                v-for="i in userDropdownItems"
-                :key="i.label"
-                href="#"
-                class="block px-4 py-2 text-sm text-secondary hover:bg-secondary-light hover:bg-opacity-50 transition-all duration-150"
-                role="menuitem"
-                @click.prevent="i.onClick"
-              >
-                {{ i.label }}
-              </a>
+              <div class="py-1">
+                <a
+                  v-for="i in userDropdownItems"
+                  :key="i.label"
+                  href="#"
+                  class="block px-4 py-2 text-sm rounded-md text-secondary hover:bg-secondary-light hover:bg-opacity-50 transition-all duration-150"
+                  role="menuitem"
+                  @click.prevent="i.onClick"
+                >
+                  {{ i.label }}
+                </a>
+              </div>
+              <div>
+                <NuxtLink
+                  class="block px-4 py-2 text-sm rounded-md text-secondary hover:bg-secondary-light hover:bg-opacity-50 transition-all duration-150"
+                  to="/terms-of-service"
+                >
+                  <span>Terms of Service</span>
+                </NuxtLink>
+                <NuxtLink
+                  class="block px-4 py-2 text-sm rounded-md text-secondary hover:bg-secondary-light hover:bg-opacity-50 transition-all duration-150"
+                  to="/privacy-policy"
+                >
+                  <span>Privacy Policy</span>
+                </NuxtLink>
+              </div>
             </template>
           </Dropdown>
         </div>

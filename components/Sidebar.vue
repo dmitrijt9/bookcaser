@@ -53,26 +53,6 @@
           </span>
         </nuxt-link>
       </nav>
-      <div class="pt-4">
-        <nuxt-link
-          class="text-secondary hover:text-black flex items-center justify-between p-1 text-xs font-medium rounded-md transition-all duration-150"
-          :to="{
-            name: 'terms-of-service',
-          }"
-          :exact="true"
-        >
-          <span>Terms of Service</span>
-        </nuxt-link>
-        <nuxt-link
-          class="text-secondary hover:text-black flex items-center justify-between p-1 text-xs font-medium rounded-md transition-all duration-150"
-          :to="{
-            name: 'privacy-policy',
-          }"
-          :exact="true"
-        >
-          <span>Privacy Policy</span>
-        </nuxt-link>
-      </div>
     </div>
   </div>
 </template>
