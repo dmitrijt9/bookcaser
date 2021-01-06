@@ -2,6 +2,22 @@
 
 Web app for managing your Google Books shelves 📖.
 
+Sign in using your Google account is required.
+
+## Features
+
+- Search books in your library
+- Search new books from the whole Google's database of books
+- Add book to a bookshelf
+- Remove book from a bookshelf
+- Clear a bookshelf (remove all books in it)
+
+## Feature todo...
+
+- [ ] Dark mode
+- [ ] More details about book (price, availability, ebook?, etc.)
+- [ ] Create new bookshelves (blocked by Google Books API - endpoint not available)
+
 ## Build Setup
 
 ```bash
